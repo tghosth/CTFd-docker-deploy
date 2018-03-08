@@ -2,6 +2,7 @@ FROM python:2.7-alpine
 RUN apk update && \
     apk add python python-dev libffi-dev gcc make musl-dev py-pip mysql-client git
 
+RUN mkdir -p /opt/CTFd
 RUN git clone https://github.com/CTFd/CTFd.git /opt/CTFd
 WORKDIR /opt/CTFd
 VOLUME ["/opt/CTFd"]
