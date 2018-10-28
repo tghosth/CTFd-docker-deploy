@@ -38,6 +38,7 @@ services:
       - db
     networks:
       internal:
+      default:
   
   db:
     image: mariadb:10.2
