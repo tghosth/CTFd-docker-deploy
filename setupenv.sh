@@ -1,6 +1,6 @@
 #!/bin/sh
 echo ""
-read -s "Before you run, check the latest compose version at: https://docs.docker.com/compose/install/"
+read -p "Before you run, check the latest compose version at: https://docs.docker.com/compose/install/"
 sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt-get update -Y
 sudo apt-get install \
@@ -19,7 +19,7 @@ echo "      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88"
 echo "      uid           [ unknown] Docker Release (CE deb) <docker@docker.com>"
 echo "      sub   rsa4096 2017-02-22 [S]"
 echo ""
-read -s ""
+read -p ""
 echo ""
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -32,5 +32,5 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 echo ""
-read -s "You should now logout and login again!"
+read -p "You should now logout and login again!"
 
