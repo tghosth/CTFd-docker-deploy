@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo ""
 read -p "Before you run, check the latest compose version at: https://docs.docker.com/compose/install/"
 
