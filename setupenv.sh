@@ -1,6 +1,7 @@
 #!/bin/sh
 echo ""
 read -p "Before you run, check the latest compose version at: https://docs.docker.com/compose/install/"
+
 sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt-get update -Y
 sudo apt-get install \
@@ -20,6 +21,7 @@ echo "      uid           [ unknown] Docker Release (CE deb) <docker@docker.com>
 echo "      sub   rsa4096 2017-02-22 [S]"
 echo ""
 read -p ""
+
 echo ""
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
