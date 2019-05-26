@@ -29,6 +29,7 @@ services:
       - UPLOAD_FOLDER=/var/uploads
       - LOG_FOLDER=/var/log/CTFd
       - USE_SSL=false
+      - REVERSE_PROXY=true
       - USE_RELOAD=false
       - DATABASE_URL=mysql+pymysql://root:ctfd@db/ctfd
     volumes:
