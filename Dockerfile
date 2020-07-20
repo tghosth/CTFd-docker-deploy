@@ -16,7 +16,7 @@ RUN apk update && \
         git \
         openssl-dev
 
-RUN git clone -b v2.5.0 --single-branch https://github.com/CTFd/CTFd.git /opt/CTFd/
+RUN git clone -b 2.5.0 --single-branch https://github.com/CTFd/CTFd.git /opt/CTFd/
 
 RUN pip install -r requirements.txt --no-cache-dir
 RUN for d in CTFd/plugins/*; do \
