@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   proxy:
-    image: nginx:alpine
+    image: nginx:1.17
     restart: always
     # Included NGINX config used hostname to determine what it's server_name will be 
     # Either set NGINX_HOSTNAME to it's public DNS name, change this line, or the config
@@ -18,42 +18,54 @@ services:
       default:
       internal:
     depends_on:
-      - ctfd
-  
+      - ctfd  
   ctfd:
     build: .
+    user: root
     restart: always
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     environment:
       - UPLOAD_FOLDER=/var/uploads
+      - DATABASE_URL=mysql+pymysql://ctfd:ctfd@db/ctfd
+      - REDIS_URL=redis://cache:6379
+      - WORKERS=1
       - LOG_FOLDER=/var/log/CTFd
-      - USE_SSL=false
+      - ACCESS_LOG=-
+      - ERROR_LOG=-
       - REVERSE_PROXY=true
-      - USE_RELOAD=false
-      - DATABASE_URL=mysql+pymysql://root:ctfd@db/ctfd
     volumes:
       - .data/CTFd/logs:/var/log/CTFd
       - .data/CTFd/uploads:/var/uploads
+      - .:/opt/CTFd:ro
     depends_on:
       - db
     networks:
-      internal:
-      default:
-  
+        default:
+        internal:
+
   db:
-    image: mariadb:10.2
+    image: mariadb:10.4.12
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=ctfd
       - MYSQL_USER=ctfd
       - MYSQL_PASSWORD=ctfd
+      - MYSQL_DATABASE=ctfd
     volumes:
       - .data/mysql:/var/lib/mysql
     networks:
         internal:
     # This command is required to set important mariadb defaults
-    command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800]
+    command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800, --log-warnings=0]
+
+  cache:
+    image: redis:4
+    restart: always
+    volumes:
+    - .data/redis:/data
+    networks:
+        internal:
 
 networks:
     default:
