@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2'
 
 services:
   nginx:
@@ -6,9 +6,8 @@ services:
     restart: always
     # Included NGINX config used hostname to determine what it's server_name will be 
     # Either set NGINX_HOSTNAME to it's public DNS name, change this line, or the config
-    hostname: ${NGINX_HOSTNAME:-localhost}
+    hostname: localhost
     ports:
-      - "80:8000"
       - "443:8443"
     volumes:
       - ./ssl:/etc/ssl:ro # Change this to match where your certificates are. Look at and adjust names in nginx.conf
