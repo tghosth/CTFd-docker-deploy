@@ -1,7 +1,7 @@
 # CTFd-docker-deploy
 Repository to deploy CTFd using docker.
 
-Note that this is currently pinned to the stable version 2.5.0 of CTFd
+Note that this is currently pinned to the stable version 3.0.0 of CTFd
 
 Brief instructions follow but you can also refer [to a blogpost](https://joshcgrossman.com/2018/03/15/setting-up-an-owasp-juice-shop-ctf/) about how I used this setup .
 
