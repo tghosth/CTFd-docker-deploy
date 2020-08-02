@@ -1,16 +1,20 @@
 # CTFd-docker-deploy
 Repository to deploy CTFd using docker.
 
-Note that this is currently pinned to the stable version 2.5.0 of CTFd
+Note that this is currently pinned to the stable version 3.0.0 of CTFd
 
 Brief instructions follow but you can also refer [to a blogpost](https://joshcgrossman.com/2018/03/15/setting-up-an-owasp-juice-shop-ctf/) about how I used this setup .
 
 ## How to use this repository to start a CTFd instance without TLS
 
-1. Install `docker` based on the instructions [here](https://docs.docker.com/install/).
-2. Install `docker-compose` based on the instructions [here](https://docs.docker.com/compose/install/#install-compose).
-3. Clone this repository by running `git clone https://github.com/tghosth/CTFd-docker-deploy.git`.
-4. Go into the directory which the repository was cloned into (`CTFd-docker-deploy` by default)
+1. Clone this repository by running `git clone https://github.com/tghosth/CTFd-docker-deploy.git`.
+2. Go into the directory which the repository was cloned into (`CTFd-docker-deploy` by default)
+Either:
+    3a. Install `docker` based on the instructions [here](https://docs.docker.com/install/).
+    3b. Install `docker-compose` based on the instructions [here](https://docs.docker.com/compose/install/#install-compose).
+    3c. Copy the contents of the https://github.com/CTFd/CTFd repository into this `CTFd-docker-deploy` folder.
+Or:
+    4a. Run the `setupenv.sh` script from this folder.
 5. Run `docker-compose up`.
 
 ## How to use this repository to start a CTFd instance with TLS
