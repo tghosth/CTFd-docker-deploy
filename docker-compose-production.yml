@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  proxy:
+  nginx:
     image: nginx:alpine
     restart: always
     # Included NGINX config used hostname to determine what it's server_name will be 
@@ -19,43 +19,3 @@ services:
       internal:
     depends_on:
       - ctfd
-  
-  ctfd:
-    build: .
-    restart: always
-    expose:
-      - "8000"
-    environment:
-      - UPLOAD_FOLDER=/var/uploads
-      - LOG_FOLDER=/var/log/CTFd
-      - USE_SSL=false
-      - REVERSE_PROXY=true
-      - USE_RELOAD=false
-      - DATABASE_URL=mysql+pymysql://root:ctfd@db/ctfd
-    volumes:
-      - .data/CTFd/logs:/var/log/CTFd
-      - .data/CTFd/uploads:/var/uploads
-    depends_on:
-      - db
-    networks:
-      internal:
-      default:
-  
-  db:
-    image: mariadb:10.2
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=ctfd
-      - MYSQL_USER=ctfd
-      - MYSQL_PASSWORD=ctfd
-    volumes:
-      - .data/mysql:/var/lib/mysql
-    networks:
-        internal:
-    # This command is required to set important mariadb defaults
-    command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800]
-
-networks:
-    default:
-    internal:
-        internal: true
