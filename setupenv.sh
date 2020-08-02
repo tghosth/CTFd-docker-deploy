@@ -4,7 +4,7 @@ read -p "Before you run, check the latest compose version at: https://docs.docke
 echo "First this will clone a pinned version of the CTFd repository"
 git clone -b 3.0.0 --single-branch https://github.com/CTFd/CTFd.git CTFdTEMP
 mv ./CTFdTEMP/* ./
-
+rm -rf ./CTFdTEMP
 sudo apt-get remove docker docker-engine docker.io containerd runc
 sudo apt-get update -y
 sudo apt-get install \
